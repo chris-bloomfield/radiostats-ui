@@ -22,12 +22,10 @@ const StationPage = ({ data: { station } }: { data: { station: StationType } }):
 
   const allTimeReachChange = latestReach - Number(sortedResults[0].reach)
 
-  const lastYearReachChange =
-    latestReach -
-    Number(
-      sortedResults[sortedResults.length - 1 - (latestSurveyPeriod === 'Q' ? 4 : 2)]?.reach ||
-        latestReach
-    )
+  const lastYearsReach =
+    sortedResults[sortedResults.length - 1 - (latestSurveyPeriod === 'Q' ? 4 : 2)]?.reach
+
+  const lastYearReachChange = lastYearsReach ? latestReach - Number(lastYearsReach) : null
 
   const [tableIsVisible, setTableIsVisible] = useState(false)
 
@@ -63,15 +61,18 @@ const StationPage = ({ data: { station } }: { data: { station: StationType } }):
           <div className="since-beginning">
             <span className="timescale">Since {fromDate.format('YYYY')}: </span>
             <span>
-              Weekly reach {allTimeReachChange > 0 ? 'increased' : 'decreased'} by{' '}
-              {allTimeReachChange.toLocaleString()} to{' '}
+              Weekly reach{' '}
+              {allTimeReachChange > 0
+                ? `increased by ${allTimeReachChange.toLocaleString()}`
+                : `decreased by ${(allTimeReachChange * -1).toLocaleString()}`}{' '}
+              by {allTimeReachChange.toLocaleString()} to{' '}
               <span className="current-reach">
                 {sortedResults[sortedResults.length - 1].reach.toLocaleString()}
               </span>
             </span>
             <span className={`triangle ${allTimeReachChange >= 0 ? 'up' : 'down'}`} />
           </div>
-          {lastYearReachChange > 0 && (
+          {lastYearReachChange && (
             <div className="last-year">
               <span className="timescale">Latest 12 months: </span>
               <span>
