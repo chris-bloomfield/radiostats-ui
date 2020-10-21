@@ -63,7 +63,6 @@ const StationPage = ({ data: { station } }: { data: { station: StationType } }):
               {allTimeReachChange > 0
                 ? `increased by ${allTimeReachChange.toLocaleString()}`
                 : `decreased by ${(allTimeReachChange * -1).toLocaleString()}`}{' '}
-              by {allTimeReachChange.toLocaleString()} to{' '}
               <span className="current-reach">
                 {sortedResults[sortedResults.length - 1].reach.toLocaleString()}
               </span>
