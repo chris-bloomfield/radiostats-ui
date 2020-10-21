@@ -18,12 +18,10 @@ const StationPage = ({ data: { station } }: { data: { station: StationType } }):
   )
 
   const latestReach = Number(sortedResults[sortedResults.length - 1].reach)
-  const latestSurveyPeriod = sortedResults[sortedResults.length - 1].surveyPeriod
 
   const allTimeReachChange = latestReach - Number(sortedResults[0].reach)
 
-  const lastYearsReach =
-    sortedResults[sortedResults.length - 1 - (latestSurveyPeriod === 'Q' ? 4 : 2)]?.reach
+  const lastYearsReach = sortedResults[sortedResults.length - 5]?.reach
 
   const lastYearReachChange = lastYearsReach ? latestReach - Number(lastYearsReach) : null
 
