@@ -61,8 +61,8 @@ const StationPage = ({ data: { station } }: { data: { station: StationType } }):
             <span>
               Weekly reach{' '}
               {allTimeReachChange > 0
-                ? `increased by ${allTimeReachChange.toLocaleString()}`
-                : `decreased by ${(allTimeReachChange * -1).toLocaleString()}`}{' '}
+                ? `increased by ${allTimeReachChange.toLocaleString()} to `
+                : `decreased by ${(allTimeReachChange * -1).toLocaleString()} to `}
               <span className="current-reach">
                 {sortedResults[sortedResults.length - 1].reach.toLocaleString()}
               </span>
