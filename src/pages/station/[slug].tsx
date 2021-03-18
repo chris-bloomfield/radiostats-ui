@@ -131,7 +131,8 @@ const StationPage = ({ data: { station } }: { data: { station: StationType } }):
       )}
       <hr />
       <div className="info">
-        Source: <a href="https://www.rajar.co.uk/">RAJAR</a> | <Link href="/">About this site</Link>
+        Source: <a href="https://www.rajar.co.uk/">RAJAR</a> |{' '}
+        <Link href="/about">About this site</Link>
       </div>
       <style jsx>{`
         .outer {
